@@ -35,7 +35,7 @@ class AddStudent extends React.Component {
                             <label className="col-md-4">Marks</label>
                             <div className="col-md-6">
                             <input id="marks" type="number"  value={this.state.marks} onChange={this.handleInput}
-                                           className="form-control" name="marks" min="1" max="10" />
+                                           className="form-control" name="marks" min="1" max="25" />
 
                         </div>
                       </div>

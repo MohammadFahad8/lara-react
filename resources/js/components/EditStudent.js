@@ -1,16 +1,17 @@
 import React from 'react'
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 class EditStudent extends React.Component {
     state = {
         name:'',
         marks:'',
         subject : '',
-        
+        loading:false,
     }
     updateStudent = () => {
         const id = this.props.match.params.id;
         axios.post('/update/'+id,this.state).then((res)=>{
-            alert('updated');
+            this.setState({loading:true})
         })
 
     }
@@ -28,6 +29,25 @@ class EditStudent extends React.Component {
         })
     }
     render(){
+        
+            if(this.state.loading == true)
+                {
+               return <div  className="toast show offset-4 mt-lg-5" role="alert" aria-live="assertive" aria-atomic="true">
+      <div className="toast-header">
+        <strong className="mr-auto">Updation</strong>
+        
+        <Link to="/" type="button"  className="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </Link>
+      </div>
+      <div className="toast-body">
+        Student Record has been updated.
+        <br></br>
+        <a className="btn btn-info w-100 mt-2" href='/'>ok</a>
+      </div>
+      
+    </div>
+                }
         return(
             <div>
                
