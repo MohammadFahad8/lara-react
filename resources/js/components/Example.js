@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom"
+import {browserHistory} from 'react-router'
+import { HashRouter } from 'react-router-dom'
 import Nav from "./Nav"
 import Student from "./Student"
 import AddStudent from "./AddStudent"
@@ -8,7 +10,7 @@ import EditStudent from "./EditStudent"
 
 function Example() {
     return (
-     <Router>
+     <Router history={browserHistory}>
          <Nav />
          <Switch>
              <Route path='/' exact component ={Student} />
@@ -22,5 +24,5 @@ function Example() {
 export default Example;
 
 if (document.getElementById('example')) {
-    ReactDOM.render(<Example />, document.getElementById('example'));
+    ReactDOM.render(<HashRouter><Example /></HashRouter>, document.getElementById('example'));
 }

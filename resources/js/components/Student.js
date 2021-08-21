@@ -13,7 +13,7 @@ class Student extends React.Component {
     }
     getStudents = () =>{
         
-        axios.get('/getStudents').then((res)=>{
+        axios.get('/api/getStudents').then((res)=>{
             
                 this.setState({students : res.data})
                 this.state.loading = false;
@@ -21,11 +21,17 @@ class Student extends React.Component {
                 console.log(this.state.students)
         })
     }
+    
     deleteStudent = (id)=>{
         axios.get('/delete/'+id).then((res)=>{
             this.state.loading = true;
             this.getStudents()
         })
+    }
+
+    testEvent=(valueReceivedWhenEventWasFired)=>{
+
+        console.log("This Guy : "+valueReceivedWhenEventWasFired+" Fired me")
     }
     componentDidMount(){
         this.getStudents()
@@ -58,6 +64,7 @@ class Student extends React.Component {
                 <tr>
                     <th>Name</th>
                     <th>Marks Obt. / Total </th>
+                    <th>Marks Obt. / Total </th>
                     <th>Subject</th>
                     <th colSpan="2" className="offset-3">Actions</th>
                 </tr>
@@ -66,7 +73,7 @@ class Student extends React.Component {
                      {this.state.students.map(student =>(
 
                       
-  <Studentlist student = {student} key = {student.id} deleteStudent = {this.deleteStudent}/>
+  <Studentlist student = {student} key = {student.id} deleteStudent = {this.deleteStudent} onTestEvent={this.testEvent}/>
                         
                      ))}
              
